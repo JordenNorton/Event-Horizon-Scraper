@@ -1,10 +1,9 @@
 ﻿using NLog;
 
-namespace EventHorizonScraper.Core // Replace "YourNamespace" with the actual namespace of your project
+namespace EventHorizonScraper.Core
 {
     public static class Program
     {
-        // Define the logger for the entire Program class
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         static void Main(string[] args)
