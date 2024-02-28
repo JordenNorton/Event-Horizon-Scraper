@@ -41,8 +41,8 @@ public static class Scraper
             using HttpResponseMessage response = await client.GetAsync(url);
             response.EnsureSuccessStatusCode();
             string responseBody = await response.Content.ReadAsStringAsync();
-            return (responseBody);
             logger.Info("Http request completed");
+            return (responseBody);
 
         }
         catch (Exception e)
