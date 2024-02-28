@@ -17,21 +17,21 @@ public static class Scraper
     {
         // URLs to fetch data from
         string url1 = "https://www.eventbrite.co.uk/d/united-kingdom--essex/tech/";
-        string url2 = "https://www.meetup.com/find/?keywords=Tech&location=gb--England--Essex&source=EVENTS";
+        // string url2 = "https://www.meetup.com/find/?keywords=Tech&location=gb--England--Essex&source=EVENTS";
 
         // Initiate both requests, but don't wait for them yet
         Task<string?> fetchTask1 = ScrapeAsync(url1);
-        Task<string?> fetchTask2 = ScrapeAsync(url2);
+        // Task<string?> fetchTask2 = ScrapeAsync(url2);
 
         // Wait for both requests to complete
-        await Task.WhenAll(fetchTask1, fetchTask2);
+        await Task.WhenAll(fetchTask1);
 
         // Use the data from both requests
         string? result1 = await fetchTask1;
-        string? result2 = await fetchTask2;
+        // string? result2 = await fetchTask2;
 
         Console.WriteLine($"Data from {url1}:\n{result1}\n");
-        Console.WriteLine($"Data from {url2}:\n{result2}\n");
+        // Console.WriteLine($"Data from {url2}:\n{result2}\n");
     }
 
     private static async Task<string?> ScrapeAsync(string url)
