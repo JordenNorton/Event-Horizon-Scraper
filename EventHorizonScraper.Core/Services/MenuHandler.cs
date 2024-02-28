@@ -20,7 +20,7 @@ public class MenuHandler
                     case "y":
                         logger.Info("Scraping: initiated");
                         Console.WriteLine("Scraping...");
-                        await Scraper.ScrapeAsync();
+                        await Scraper.FetchData();
                         Console.ReadLine();
                         break;
                         
