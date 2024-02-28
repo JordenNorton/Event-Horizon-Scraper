@@ -7,15 +7,15 @@ namespace EventHorizonScraper.Core
     {
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
         private static readonly MenuHandler MenuHandler = new MenuHandler();
-        
-        static void Main(string[] args)
+
+        static async Task Main(string[] args)
         {
-            
+
             Logger.Info("Application is starting...");
-            
-            MenuHandler.DisplayMenu();
-            
-            Logger.Warn("Application is ending...");
+
+            await MenuHandler.DisplayMenu();
+
+            Logger.Info("Application is ending...");
         }
     }
 }

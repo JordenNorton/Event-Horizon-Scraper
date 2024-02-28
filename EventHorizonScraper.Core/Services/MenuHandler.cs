@@ -4,11 +4,11 @@ namespace EventHorizonScraper.Core.Services;
 
 public class MenuHandler
 {
-    public void DisplayMenu()
+    public static async Task DisplayMenu()
     {
         var logger = LogManager.GetCurrentClassLogger();
         var continueRunning = true;
-            
+          
         while (continueRunning)
         {
             try
@@ -20,6 +20,7 @@ public class MenuHandler
                     case "y":
                         logger.Info("Scraping: initiated");
                         Console.WriteLine("Scraping...");
+                        await Scraper.ScrapeAsync();
                         Console.ReadLine();
                         break;
                         
