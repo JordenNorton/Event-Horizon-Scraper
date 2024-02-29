@@ -28,11 +28,8 @@ public static class Scraper
         // Use the data from both requests
         string? result1 = await fetchTask1;
 
-        // Console.WriteLine($"Data from {url1}:\n{result1}\n");
-
         if (!string.IsNullOrEmpty(result1))
         {
-            // Console.WriteLine($"{result1}");
             var htmlProcessor = new HtmlProcessor();
             htmlProcessor.ProcessHtml(result1);
         }
