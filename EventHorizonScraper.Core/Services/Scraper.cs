@@ -17,7 +17,7 @@ public static class Scraper
     public static async Task FetchData()
     {
         // URLs to fetch data from
-        string url1 = "https://www.eventbrite.co.uk/d/united-kingdom--essex/tech/";
+        string url1 = "https://www.eventbrite.co.uk/d/united-kingdom--basildon/tech/";
 
         // Initiate both requests, but don't wait for them yet
         Task<string?> fetchTask1 = ScrapeAsync(url1);
