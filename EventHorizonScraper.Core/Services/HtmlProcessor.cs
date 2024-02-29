@@ -47,7 +47,9 @@ public class HtmlProcessor
                         //Assign manipulated event values to strings
                         string eventDate = eventDates.InnerText.Trim();
                         string eventLocation = eventTitleNode.Attributes["data-event-location"].Value;
+                        string eventUrl= eventTitleNode.Attributes["href"].Value;
                         string eventOrganiser = eventOrganisers.InnerText.Trim();
+                        
                         
                         //Set values using EventCard model
                         EventCard eventCard = new EventCard
@@ -55,7 +57,8 @@ public class HtmlProcessor
                             Title = cleanedTitle,
                             Date = eventDate,
                             Location = eventLocation,
-                            Organiser = eventOrganiser
+                            Organiser = eventOrganiser,
+                            Url = eventUrl
                         };
                         
                         //append events to the eventCards list
@@ -76,7 +79,7 @@ public class HtmlProcessor
         {
             var allowedChars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz._-& ";
             
-            //returns the cleaned title & changes any escaped &amp's to the & charachter
+            //returns the cleaned title & changes any escaped &amp's to the & character
             return new string(input.Where(c => allowedChars.Contains(c)).ToArray()).Replace("&amp","&");
         }
 
@@ -91,7 +94,7 @@ public class HtmlProcessor
         List<EventCard> jsonOutput = JsonSerializer.Deserialize<List<EventCard>>(jsonObject);
         foreach (EventCard eventCard in jsonOutput)
         {
-            Console.WriteLine($"Title: {eventCard.Title} - Date: {eventCard.Date} - Location: {eventCard.Location} - Organiser: {eventCard.Organiser}");
+            Console.WriteLine($"Title: {eventCard.Title} - Date: {eventCard.Date} - Location: {eventCard.Location} - Organiser: {eventCard.Organiser} - Url: {eventCard.Url}");
         }
         
         /* - Testing Finish - */

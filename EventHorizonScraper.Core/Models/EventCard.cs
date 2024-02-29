@@ -6,4 +6,5 @@ public class EventCard
     public string? Date { get; set; }
     public string? Location { get; set; }
     public string? Organiser { get; set; }
+    public string? Url { get; set; }
 }
