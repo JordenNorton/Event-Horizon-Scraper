@@ -1,21 +1,19 @@
 ﻿using EventHorizonScraper.Core.Services;
 using NLog;
 
-namespace EventHorizonScraper.Core
+namespace EventHorizonScraper.Core;
+
+public static class Program
 {
-    public static class Program
+    private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+    private static readonly MenuHandler MenuHandler = new();
+
+    private static async Task Main(string[] args)
     {
-        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
-        private static readonly MenuHandler MenuHandler = new MenuHandler();
+        Logger.Info("Application is starting...");
 
-        static async Task Main(string[] args)
-        {
+        await MenuHandler.DisplayMenu();
 
-            Logger.Info("Application is starting...");
-
-            await MenuHandler.DisplayMenu();
-
-            Logger.Info("Application is ending...");
-        }
+        Logger.Info("Application is ending...");
     }
 }

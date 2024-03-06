@@ -1,26 +1,23 @@
 using EventHorizonScraper.Core.Models;
 using NLog;
-using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Threading.Tasks;
 
 namespace EventHorizonScraper.Core.Services;
 
 public class Scraper : IScrapeService
 {
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
-    private static readonly HttpClient Client = new HttpClient();
+    private static readonly HttpClient Client = new();
 
     static Scraper()
     {
         // Set a user-agent to mimic a web browser
-        Client.DefaultRequestHeaders.UserAgent.ParseAdd("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3");
+        Client.DefaultRequestHeaders.UserAgent.ParseAdd(
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3");
     }
 
     public async Task<List<EventCard>> FetchDataAsync()
     {
-        string url = "https://www.eventbrite.co.uk/d/united-kingdom--basildon/tech/";
+        var url = "https://www.eventbrite.co.uk/d/united-kingdom--basildon/tech/";
         string? result = await ScrapeAsync(url);
 
         if (string.IsNullOrEmpty(result))
@@ -37,7 +34,7 @@ public class Scraper : IScrapeService
     {
         try
         {
-            HttpResponseMessage response = await Client.GetAsync(url);
+            var response = await Client.GetAsync(url);
             response.EnsureSuccessStatusCode();
             string responseBody = await response.Content.ReadAsStringAsync();
             Logger.Info("HTTP request completed successfully.");
