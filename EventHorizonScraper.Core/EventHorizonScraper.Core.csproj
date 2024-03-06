@@ -8,17 +8,17 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="AngleSharp" Version="1.1.1-beta.387" />
-      <PackageReference Include="AngleSharp.Css" Version="1.0.0-beta.139" />
-      <PackageReference Include="AngleSharp.XPath" Version="2.0.3" />
-      <PackageReference Include="HtmlAgilityPack" Version="1.11.59" />
-      <PackageReference Include="NLog" Version="5.2.8" />
+        <PackageReference Include="AngleSharp" Version="1.1.1-beta.387"/>
+        <PackageReference Include="AngleSharp.Css" Version="1.0.0-beta.139"/>
+        <PackageReference Include="AngleSharp.XPath" Version="2.0.3"/>
+        <PackageReference Include="HtmlAgilityPack" Version="1.11.59"/>
+        <PackageReference Include="NLog" Version="5.2.8"/>
     </ItemGroup>
 
     <ItemGroup>
-      <None Update="nlog.config">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
+        <None Update="nlog.config">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
     </ItemGroup>
 
 </Project>
