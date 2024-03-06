@@ -10,14 +10,14 @@ public class HtmlProcessor
 {
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
     
-    public void ProcessHtml(string content)
+    public List<EventCard> ProcessHtml(string content)
     {
         
         var htmlDoc = new HtmlDocument();
         htmlDoc.LoadHtml(content);
 
         //Initialise a list of type "EventCard" (Model)
-        List<EventCard> eventCards = new List<EventCard>();
+        List<EventCard>? eventCards = new List<EventCard>();
         
         //Set event card limit
         int cardCount = 5;
@@ -86,18 +86,18 @@ public class HtmlProcessor
         
         /* - Testing Start - */
         
-        Logger.Info("Serializing!");
-        string jsonObject = JsonSerializer.Serialize(eventCards);
-        Logger.Info("Finished serializing");
-        
-        //List output checker!
-        List<EventCard> jsonOutput = JsonSerializer.Deserialize<List<EventCard>>(jsonObject);
-        foreach (EventCard eventCard in jsonOutput)
-        {
-            Console.WriteLine($"Title: {eventCard.Title} - Date: {eventCard.Date} - Location: {eventCard.Location} - Organiser: {eventCard.Organiser} - Url: {eventCard.Url}");
-        }
+        // Logger.Info("Serializing!");
+        // string jsonObject = JsonSerializer.Serialize(eventCards);
+        // Logger.Info("Finished serializing");
+        //
+        // //List output checker!
+        // List<EventCard> jsonOutput = JsonSerializer.Deserialize<List<EventCard>>(jsonObject);
+        // foreach (EventCard eventCard in jsonOutput)
+        // {
+        //     Console.WriteLine($"Title: {eventCard.Title} - Date: {eventCard.Date} - Location: {eventCard.Location} - Organiser: {eventCard.Organiser} - Url: {eventCard.Url}");
+        // }
         
         /* - Testing Finish - */
-
+        return eventCards;
     }
 }

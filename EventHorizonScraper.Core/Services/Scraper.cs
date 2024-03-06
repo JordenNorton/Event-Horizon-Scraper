@@ -1,57 +1,52 @@
+using EventHorizonScraper.Core.Models;
 using NLog;
-using HtmlAgilityPack;
+using System;
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace EventHorizonScraper.Core.Services;
 
-public static class Scraper
+public class Scraper : IScrapeService
 {
-    private static readonly Logger logger = LogManager.GetCurrentClassLogger();
-    private static readonly HttpClient client = new HttpClient();
+    private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+    private static readonly HttpClient Client = new HttpClient();
 
     static Scraper()
     {
         // Set a user-agent to mimic a web browser
-        client.DefaultRequestHeaders.UserAgent.ParseAdd("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3");
+        Client.DefaultRequestHeaders.UserAgent.ParseAdd("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3");
     }
 
-    public static async Task FetchData()
+    public async Task<List<EventCard>> FetchDataAsync()
     {
-        // URLs to fetch data from
-        string url1 = "https://www.eventbrite.co.uk/d/united-kingdom--basildon/tech/";
+        string url = "https://www.eventbrite.co.uk/d/united-kingdom--basildon/tech/";
+        string? result = await ScrapeAsync(url);
 
-        // Initiate both requests, but don't wait for them yet
-        Task<string?> fetchTask1 = ScrapeAsync(url1);
-
-        // Wait for both requests to complete
-        await Task.WhenAll(fetchTask1);
-
-        // Use the data from both requests
-        string? result1 = await fetchTask1;
-
-        if (!string.IsNullOrEmpty(result1))
+        if (string.IsNullOrEmpty(result))
         {
-            var htmlProcessor = new HtmlProcessor();
-            htmlProcessor.ProcessHtml(result1);
+            Logger.Error("Failed to fetch or no data returned from URL.");
+            return new List<EventCard>();
         }
+
+        var htmlProcessor = new HtmlProcessor();
+        return htmlProcessor.ProcessHtml(result);
     }
 
     private static async Task<string?> ScrapeAsync(string url)
     {
         try
         {
-            using HttpResponseMessage response = await client.GetAsync(url);
+            HttpResponseMessage response = await Client.GetAsync(url);
             response.EnsureSuccessStatusCode();
             string responseBody = await response.Content.ReadAsStringAsync();
-            logger.Info("Http request completed");
-            return (responseBody);
-
+            Logger.Info("HTTP request completed successfully.");
+            return responseBody;
         }
         catch (Exception e)
         {
-            logger.Error($"{e.Message}");
+            Logger.Error($"Error during scraping: {e.Message}");
             return null;
         }
     }
-    
-    
 }
