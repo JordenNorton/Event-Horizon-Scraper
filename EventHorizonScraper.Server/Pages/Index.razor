@@ -1,44 +1,49 @@
 ﻿@page "/"
-@using EventHorizonScraper.Core.Services
-@using EventHorizonScraper.Core.Models
-@inject IScrapeService Scraper
 
-<PageTitle>Index</PageTitle>
+<PageTitle>Event Horizon</PageTitle>
 
-<h1>Hello, world!</h1>
 
-Welcome to your new app.
+<div class="main-title text-center">
+    <h1>Event Horizon</h1>
+    <h4>A Comprehensive Event Aggregator for Tech Enthusiasts</h4>
+</div>
 
-<SurveyPrompt Title="How is Blazor working for you?" />
+<div class="container">
+    <div class="text-center mb-5">
+        <button class="btn btn-primary btn-lg" @onclick="StartScraping">Start Scraping</button>
+    </div>
 
-<button class="btn btn-primary" @onclick="StartScraping">Start Scraping</button>
-
-@if (_events == null)
-{
-    <p><em>Click "Start Scraping" to load events...</em></p>
-}
-else if (_events.Count == 0)
-{
-    <p><em>No events found.</em></p>
-}
-else
-{
-    <ul>
-        @foreach (var eventCard in _events)
-        {
-            <li>@eventCard.Title - @eventCard.Date - @eventCard.Location</li>
-        }
-    </ul>
-}
-
-@code {
-    private List<EventCard>? _events;
-
-    private async Task StartScraping()
+    @if (_events == null)
     {
-        _events = await Scraper.FetchDataAsync();
-        // The call to StateHasChanged() is not strictly necessary in a Blazor Server app
-        // after an awaited async call as Blazor should handle this automatically.
-        StateHasChanged(); // Uncomment if UI does not update as expected.
+        <p class="text-center mt-5 fs-4">
+            <em>Click "Start Scraping" to load events...</em>
+        </p>
     }
-}
+    else if (_events.Count == 0)
+    {
+        <p class="text-center mt-5 fs-4">
+            <em>No events found.</em>
+        </p>
+    }
+    else
+    {
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            @foreach (var eventCard in _events)
+            {
+                <div class="col">
+                    <div class="card h-100 card-shadow card-material-gradient">
+                        <div class="card-body">
+                            <h5 class="card-title">@eventCard.Title</h5>
+                            <h6 class="card-subtitle mb-2">@eventCard.Date</h6>
+                            <p class="card-text">@eventCard.Location</p>
+                            <p class="card-text"><small>@eventCard.Organiser</small></p>
+                        </div>
+                        <div class="card-footer">
+                            <a href="@eventCard.Url" class="btn btn-outline-primary btn-sm" target="_blank">Visit Event</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>
