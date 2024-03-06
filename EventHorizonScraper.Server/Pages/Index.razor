@@ -1,0 +1,44 @@
+﻿@page "/"
+@using EventHorizonScraper.Core.Services
+@using EventHorizonScraper.Core.Models
+@inject IScrapeService Scraper
+
+<PageTitle>Index</PageTitle>
+
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+
+<SurveyPrompt Title="How is Blazor working for you?" />
+
+<button class="btn btn-primary" @onclick="StartScraping">Start Scraping</button>
+
+@if (_events == null)
+{
+    <p><em>Click "Start Scraping" to load events...</em></p>
+}
+else if (_events.Count == 0)
+{
+    <p><em>No events found.</em></p>
+}
+else
+{
+    <ul>
+        @foreach (var eventCard in _events)
+        {
+            <li>@eventCard.Title - @eventCard.Date - @eventCard.Location</li>
+        }
+    </ul>
+}
+
+@code {
+    private List<EventCard>? _events;
+
+    private async Task StartScraping()
+    {
+        _events = await Scraper.FetchDataAsync();
+        // The call to StateHasChanged() is not strictly necessary in a Blazor Server app
+        // after an awaited async call as Blazor should handle this automatically.
+        StateHasChanged(); // Uncomment if UI does not update as expected.
+    }
+}

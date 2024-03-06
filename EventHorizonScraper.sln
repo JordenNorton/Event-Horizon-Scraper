@@ -2,7 +2,7 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventHorizonScraper.Core", "EventHorizonScraper.Core\EventHorizonScraper.Core.csproj", "{344778DA-4E0D-4ED0-834A-9835AC514F58}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventHorizonScraper.WebUI", "EventHorizonScraper.WebUI\EventHorizonScraper.WebUI.csproj", "{464C1BE8-10BF-406E-B287-3EE4D307FF62}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventHorizonScraper.Server", "EventHorizonScraper.Server\EventHorizonScraper.Server.csproj", "{A67D2EE8-E5D6-43BE-98DB-70B843B824E0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -14,9 +14,9 @@ Global
 		{344778DA-4E0D-4ED0-834A-9835AC514F58}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{344778DA-4E0D-4ED0-834A-9835AC514F58}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{344778DA-4E0D-4ED0-834A-9835AC514F58}.Release|Any CPU.Build.0 = Release|Any CPU
-		{464C1BE8-10BF-406E-B287-3EE4D307FF62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{464C1BE8-10BF-406E-B287-3EE4D307FF62}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{464C1BE8-10BF-406E-B287-3EE4D307FF62}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{464C1BE8-10BF-406E-B287-3EE4D307FF62}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A67D2EE8-E5D6-43BE-98DB-70B843B824E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A67D2EE8-E5D6-43BE-98DB-70B843B824E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A67D2EE8-E5D6-43BE-98DB-70B843B824E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A67D2EE8-E5D6-43BE-98DB-70B843B824E0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
