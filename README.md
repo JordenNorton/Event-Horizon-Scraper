@@ -18,3 +18,9 @@
 - AngleSharp for advanced HTML document manipulation
 - NLog for logging
 - Blazor for the web interface
+
+<br>
+<br>
+<br>
+
+![Sequence 01](https://github.com/JordenNorton/event-horizon-scraper/assets/12415684/09382d94-ade7-426d-812b-5dcb7ee2cfd3)
